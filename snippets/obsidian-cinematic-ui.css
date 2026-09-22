@@ -1,0 +1,145 @@
+/* Obsidian Cinematic UI — public, wallpaper-free edition */
+:root {
+  --xwc-glow-rgb: 168, 208, 255;
+  --xwc-image-reveal-duration: .62s;
+  --xwc-callout-breathe-duration: 2.4s;
+}
+
+/* Document reveal */
+@keyframes xwc-document-in {
+  from { opacity: 0; transform: translate3d(0, 5px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.workspace-leaf.mod-active :is(.markdown-source-view, .markdown-preview-view) {
+  animation: xwc-document-in .28s ease-out both;
+}
+
+/* Stable caret and active-line glow */
+body { --cursor-color: rgba(var(--xwc-glow-rgb), .95) !important; }
+.markdown-source-view.mod-cm6 .cm-content,
+.cm-editor .cm-content { caret-color: rgba(var(--xwc-glow-rgb), .95) !important; }
+.cm-editor.cm-focused .cm-line.cm-active {
+  background: linear-gradient(90deg, rgba(var(--xwc-glow-rgb), .14), rgba(var(--xwc-glow-rgb), .05) 42%, transparent 76%) !important;
+  box-shadow: inset 2px 0 rgba(var(--xwc-glow-rgb), .55);
+}
+
+/* Selection glow */
+:is(.markdown-rendered, .markdown-preview-view, .markdown-source-view.mod-cm6) ::selection {
+  color: #f0f8ff !important;
+  background: rgba(var(--xwc-glow-rgb), .24) !important;
+  text-shadow: 0 0 4px rgba(var(--xwc-glow-rgb), .95), 0 0 11px rgba(var(--xwc-glow-rgb), .68), 0 0 22px rgba(var(--xwc-glow-rgb), .34);
+}
+.markdown-source-view.mod-cm6 .cm-editor .cm-selectionBackground {
+  background: rgba(var(--xwc-glow-rgb), .20) !important;
+  box-shadow: 0 0 7px 2px rgba(var(--xwc-glow-rgb), .48), inset 0 0 6px rgba(var(--xwc-glow-rgb), .22);
+  border-radius: 3px;
+}
+
+/* Link underline growth */
+:is(.markdown-rendered, .markdown-source-view.mod-cm6) a {
+  background-image: linear-gradient(90deg, rgba(var(--xwc-glow-rgb), .88), rgba(var(--xwc-glow-rgb), .30));
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  text-decoration: none;
+  transition: background-size .24s ease, text-shadow .24s ease;
+}
+:is(.markdown-rendered, .markdown-source-view.mod-cm6) a:hover {
+  background-size: 100% 1px;
+  text-shadow: 0 0 10px rgba(var(--xwc-glow-rgb), .32);
+}
+
+/* Completed task feedback */
+@keyframes xwc-task-flash {
+  0% { box-shadow: 0 0 0 0 rgba(var(--xwc-glow-rgb), .78); }
+  100% { box-shadow: 0 0 0 13px rgba(var(--xwc-glow-rgb), 0); }
+}
+.task-list-item.is-checked { text-decoration: line-through !important; opacity: .68; }
+.task-list-item.is-flashing input[type="checkbox"] { animation: xwc-task-flash .52s ease-out both !important; }
+
+/* Reading-mode code block lift */
+:is(.markdown-rendered, .markdown-preview-view) pre:not(.obsidian-embedded-code-title__code-block-title) {
+  transform: translate3d(0, 0, 0);
+  transition: transform .24s cubic-bezier(.2,.8,.25,1), box-shadow .24s ease, border-color .24s ease;
+}
+:is(.markdown-rendered, .markdown-preview-view) pre:not(.obsidian-embedded-code-title__code-block-title):hover {
+  transform: translate3d(0, -4px, 0);
+  border-color: rgba(var(--xwc-glow-rgb), .42) !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,.36), 0 0 18px rgba(var(--xwc-glow-rgb), .18);
+}
+
+/* Semantic Callout tokens */
+body :is(.callout[data-callout="note"], .admonition-note) { --xwc-callout-rgb: 82, 164, 255; }
+body :is(.callout[data-callout="abstract"], .callout[data-callout="summary"], .callout[data-callout="tldr"], .admonition-abstract, .admonition-summary, .admonition-tldr) { --xwc-callout-rgb: 57, 213, 218; }
+body :is(.callout[data-callout="info"], .admonition-info) { --xwc-callout-rgb: 75, 137, 255; }
+body :is(.callout[data-callout="todo"], .admonition-todo) { --xwc-callout-rgb: 151, 105, 255; }
+body :is(.callout[data-callout="tip"], .callout[data-callout="hint"], .callout[data-callout="important"], .admonition-tip, .admonition-hint, .admonition-important) { --xwc-callout-rgb: 49, 218, 169; }
+body :is(.callout[data-callout="success"], .callout[data-callout="check"], .callout[data-callout="done"], .admonition-success, .admonition-check, .admonition-done) { --xwc-callout-rgb: 76, 211, 112; }
+body :is(.callout[data-callout="question"], .callout[data-callout="help"], .callout[data-callout="faq"], .admonition-question, .admonition-help, .admonition-faq) { --xwc-callout-rgb: 235, 179, 58; }
+body :is(.callout[data-callout="warning"], .admonition-warning) { --xwc-callout-rgb: 255, 157, 36; }
+body :is(.callout[data-callout="caution"], .callout[data-callout="attention"], .admonition-caution, .admonition-attention) { --xwc-callout-rgb: 255, 204, 65; }
+body :is(.callout[data-callout="failure"], .callout[data-callout="fail"], .callout[data-callout="missing"], .admonition-failure, .admonition-fail, .admonition-missing) { --xwc-callout-rgb: 240, 100, 137; }
+body :is(.callout[data-callout="danger"], .callout[data-callout="error"], .admonition-danger, .admonition-error) { --xwc-callout-rgb: 255, 69, 84; }
+body :is(.callout[data-callout="bug"], .admonition-bug) { --xwc-callout-rgb: 221, 76, 181; }
+body :is(.callout[data-callout="example"], .admonition-example) { --xwc-callout-rgb: 170, 105, 255; }
+body :is(.callout[data-callout="quote"], .callout[data-callout="cite"], .admonition-quote, .admonition-cite) { --xwc-callout-rgb: 164, 178, 198; }
+
+body :is(
+  .callout[data-callout="note"], .callout[data-callout="abstract"], .callout[data-callout="summary"], .callout[data-callout="tldr"],
+  .callout[data-callout="info"], .callout[data-callout="todo"], .callout[data-callout="tip"], .callout[data-callout="hint"], .callout[data-callout="important"],
+  .callout[data-callout="success"], .callout[data-callout="check"], .callout[data-callout="done"], .callout[data-callout="question"], .callout[data-callout="help"], .callout[data-callout="faq"],
+  .callout[data-callout="warning"], .callout[data-callout="caution"], .callout[data-callout="attention"], .callout[data-callout="failure"], .callout[data-callout="fail"], .callout[data-callout="missing"],
+  .callout[data-callout="danger"], .callout[data-callout="error"], .callout[data-callout="bug"], .callout[data-callout="example"], .callout[data-callout="quote"], .callout[data-callout="cite"],
+  .callout[class*="admonition-"], .admonition[class*="admonition-"]
+) {
+  --callout-color: var(--xwc-callout-rgb) !important;
+  background: linear-gradient(105deg, rgba(var(--xwc-callout-rgb), .25), rgba(var(--xwc-callout-rgb), .10) 46%, rgba(8,12,20,.46)) !important;
+  backdrop-filter: blur(10px) saturate(1.24) !important;
+  border: 1px solid rgba(var(--xwc-callout-rgb), .44) !important;
+  border-left: 6px solid rgba(var(--xwc-callout-rgb), .88) !important;
+  border-radius: 9px !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.28), inset 7px 0 18px -11px rgba(var(--xwc-callout-rgb), .52) !important;
+}
+body :is(.callout-title, .admonition-title) { color: rgb(var(--xwc-callout-rgb)); }
+
+@property --xwc-callout-glow-alpha { syntax: "<number>"; inherits: false; initial-value: .08; }
+@property --xwc-callout-border-alpha { syntax: "<number>"; inherits: false; initial-value: .34; }
+@property --xwc-callout-glow-size { syntax: "<length>"; inherits: false; initial-value: 7px; }
+@property --xwc-callout-panel-alpha { syntax: "<number>"; inherits: false; initial-value: .14; }
+@keyframes xwc-callout-breathe {
+  0%, 100% { --xwc-callout-glow-alpha: .08; --xwc-callout-border-alpha: .34; --xwc-callout-glow-size: 7px; --xwc-callout-panel-alpha: .14; }
+  50% { --xwc-callout-glow-alpha: .90; --xwc-callout-border-alpha: 1; --xwc-callout-glow-size: 48px; --xwc-callout-panel-alpha: .48; }
+}
+body :is(
+  .callout[data-callout="warning"], .callout[data-callout="caution"], .callout[data-callout="attention"],
+  .callout[data-callout="danger"], .callout[data-callout="error"], .callout[data-callout="failure"], .callout[data-callout="fail"], .callout[data-callout="bug"],
+  .admonition-warning, .admonition-caution, .admonition-attention, .admonition-danger, .admonition-error, .admonition-failure, .admonition-fail, .admonition-bug
+) {
+  border-left-width: 7px !important;
+  border-left-color: rgba(var(--xwc-callout-rgb), var(--xwc-callout-border-alpha)) !important;
+  background: linear-gradient(105deg, rgba(var(--xwc-callout-rgb), var(--xwc-callout-panel-alpha)), rgba(var(--xwc-callout-rgb), .10) 46%, rgba(8,12,20,.46)) !important;
+  box-shadow: 0 0 var(--xwc-callout-glow-size) rgba(var(--xwc-callout-rgb), var(--xwc-callout-glow-alpha)), inset 10px 0 22px -9px rgba(var(--xwc-callout-rgb), var(--xwc-callout-glow-alpha)), 0 9px 26px rgba(0,0,0,.34) !important;
+  animation: xwc-callout-breathe var(--xwc-callout-breathe-duration) ease-in-out infinite !important;
+}
+
+/* Image reveal */
+@keyframes xwc-image-ready {
+  0% { opacity: 0; filter: blur(5px) saturate(.72); transform: translate3d(0,5px,0) scale(.992); }
+  60% { opacity: .78; }
+  100% { opacity: 1; filter: blur(0) saturate(1); transform: translate3d(0,0,0) scale(1); }
+}
+:is(.markdown-rendered, .markdown-preview-view, .markdown-source-view.mod-cm6)
+  :is(.internal-embed.image-embed img, .image-embed img, img[src]:not(.emoji):not(.cm-widgetBuffer)) {
+  animation: xwc-image-ready var(--xwc-image-reveal-duration) cubic-bezier(.2,.72,.24,1) both;
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workspace-leaf.mod-active :is(.markdown-source-view, .markdown-preview-view),
+  :is(.markdown-rendered, .markdown-preview-view, .markdown-source-view.mod-cm6)
+    :is(.internal-embed.image-embed img, .image-embed img, img[src]:not(.emoji):not(.cm-widgetBuffer)) {
+    animation-duration: .01ms !important;
+  }
+  /* Warning Callouts intentionally keep breathing: this is their semantic alert signal. */
+}
