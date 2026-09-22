@@ -10,6 +10,7 @@ A polished CSS motion layer for Obsidian: cinematic enough to feel alive, restra
 - Breathing glow for warning, caution, failure, danger, and bug Callouts
 - Soft image reveal instead of a hard loading flash
 - Checkbox completion ripple and strike-through feedback
+- Non-empty inbox folder pulse (path is easy to customize)
 - Selection glow, active-line glow, growing link underline
 - Reading-mode code block lift and shadow
 - Works in Live Preview and Reading View

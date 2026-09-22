@@ -57,6 +57,24 @@ body { --cursor-color: rgba(var(--xwc-glow-rgb), .95) !important; }
 .task-list-item.is-checked { text-decoration: line-through !important; opacity: .68; }
 .task-list-item.is-flashing input[type="checkbox"] { animation: xwc-task-flash .52s ease-out both !important; }
 
+/* Non-empty inbox reminder. Change the data-path value if your inbox has another name. */
+@keyframes xwc-inbox-pulse {
+  0%, 100% { transform: scale(1); opacity: .78; filter: drop-shadow(0 0 2px rgba(255,174,62,.20)); }
+  50% { transform: scale(1.38) rotate(-5deg); opacity: 1; filter: drop-shadow(0 0 5px rgba(255,196,86,.96)) drop-shadow(0 0 12px rgba(255,124,42,.72)); }
+}
+.nav-files-container
+  .nav-folder-title[data-path="📥收件箱"]:has(+ .nav-folder-children > .tree-item)
+  .nav-folder-title-content::before {
+  animation: xwc-inbox-pulse 2.2s ease-in-out infinite !important;
+  transform-origin: center;
+  color: rgb(255,186,72) !important;
+}
+.nav-files-container
+  .nav-folder-title[data-path="📥收件箱"]:has(+ .nav-folder-children > .tree-item) {
+  color: rgb(255,218,145) !important;
+  text-shadow: 0 0 10px rgba(255,155,48,.46);
+}
+
 /* Reading-mode code block lift */
 :is(.markdown-rendered, .markdown-preview-view) pre:not(.obsidian-embedded-code-title__code-block-title) {
   transform: translate3d(0, 0, 0);
