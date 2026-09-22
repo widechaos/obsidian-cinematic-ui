@@ -57,22 +57,26 @@ body { --cursor-color: rgba(var(--xwc-glow-rgb), .95) !important; }
 .task-list-item.is-checked { text-decoration: line-through !important; opacity: .68; }
 .task-list-item.is-flashing input[type="checkbox"] { animation: xwc-task-flash .52s ease-out both !important; }
 
-/* Non-empty inbox reminder. Change the data-path value if your inbox has another name. */
-@keyframes xwc-inbox-pulse {
+/* Inbox reminder. A standalone snippet cannot inspect the filesystem, so this
+   public edition pulses the configured inbox whenever that folder is present. */
+@keyframes xwc-inbox-icon-pulse {
   0%, 100% { transform: scale(1); opacity: .78; filter: drop-shadow(0 0 2px rgba(255,174,62,.20)); }
   50% { transform: scale(1.38) rotate(-5deg); opacity: 1; filter: drop-shadow(0 0 5px rgba(255,196,86,.96)) drop-shadow(0 0 12px rgba(255,124,42,.72)); }
 }
-.nav-files-container
-  .nav-folder-title[data-path="📥收件箱"]:has(+ .nav-folder-children > .tree-item)
-  .nav-folder-title-content::before {
-  animation: xwc-inbox-pulse 2.2s ease-in-out infinite !important;
+.nav-files-container .nav-folder-title[data-path="📥收件箱"] .nav-folder-title-content::before,
+.nav-files-container .nav-folder-title[data-path="📥收件箱"] :is(.collapse-icon, svg) {
+  animation: xwc-inbox-icon-pulse 1.8s ease-in-out infinite !important;
   transform-origin: center;
   color: rgb(255,186,72) !important;
 }
-.nav-files-container
-  .nav-folder-title[data-path="📥收件箱"]:has(+ .nav-folder-children > .tree-item) {
+@keyframes xwc-inbox-row-pulse {
+  0%, 100% { background-color: rgba(255,151,42,.08); box-shadow: inset 3px 0 rgba(255,174,62,.38), 0 0 5px rgba(255,126,31,.08); text-shadow: 0 0 4px rgba(255,155,48,.28); }
+  50% { background-color: rgba(255,151,42,.30); box-shadow: inset 5px 0 rgba(255,218,112,1), 0 0 20px rgba(255,126,31,.72); text-shadow: 0 0 7px rgba(255,226,148,.92), 0 0 16px rgba(255,132,38,.74); }
+}
+.nav-files-container .nav-folder-title[data-path="📥收件箱"] {
   color: rgb(255,218,145) !important;
-  text-shadow: 0 0 10px rgba(255,155,48,.46);
+  border-radius: 6px;
+  animation: xwc-inbox-row-pulse 1.8s ease-in-out infinite !important;
 }
 
 /* Reading-mode code block lift */
