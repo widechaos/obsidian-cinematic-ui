@@ -60,8 +60,8 @@ body { --cursor-color: rgba(var(--xwc-glow-rgb), .95) !important; }
 /* Inbox reminder. A standalone snippet cannot inspect the filesystem, so this
    public edition pulses the configured inbox whenever that folder is present. */
 @keyframes xwc-inbox-icon-pulse {
-  0%, 100% { transform: scale(1); opacity: .78; filter: drop-shadow(0 0 2px rgba(255,174,62,.20)); }
-  50% { transform: scale(1.38) rotate(-5deg); opacity: 1; filter: drop-shadow(0 0 5px rgba(255,196,86,.96)) drop-shadow(0 0 12px rgba(255,124,42,.72)); }
+  0%, 100% { opacity: .78; filter: brightness(1) drop-shadow(0 0 1px rgba(255,174,62,.18)); }
+  50% { opacity: 1; filter: brightness(1.28) drop-shadow(0 0 5px rgba(255,196,86,.88)); }
 }
 .nav-files-container .nav-folder-title[data-path="📥收件箱"] .nav-folder-title-content::before,
 .nav-files-container .nav-folder-title[data-path="📥收件箱"] :is(.collapse-icon, svg) {
@@ -70,12 +70,14 @@ body { --cursor-color: rgba(var(--xwc-glow-rgb), .95) !important; }
   color: rgb(255,186,72) !important;
 }
 @keyframes xwc-inbox-row-pulse {
-  0%, 100% { background-color: rgba(255,151,42,.08); box-shadow: inset 3px 0 rgba(255,174,62,.38), 0 0 5px rgba(255,126,31,.08); text-shadow: 0 0 4px rgba(255,155,48,.28); }
-  50% { background-color: rgba(255,151,42,.30); box-shadow: inset 5px 0 rgba(255,218,112,1), 0 0 20px rgba(255,126,31,.72); text-shadow: 0 0 7px rgba(255,226,148,.92), 0 0 16px rgba(255,132,38,.74); }
+  0%, 100% { background-color: rgba(255,151,42,.08); box-shadow: inset 3px 0 rgba(255,174,62,.38), inset 0 0 4px rgba(255,126,31,.08); text-shadow: 0 0 4px rgba(255,155,48,.28); }
+  50% { background-color: rgba(255,151,42,.30); box-shadow: inset 4px 0 rgba(255,218,112,1), inset 0 0 14px rgba(255,126,31,.62); text-shadow: 0 0 7px rgba(255,226,148,.92), 0 0 16px rgba(255,132,38,.74); }
 }
 .nav-files-container .nav-folder-title[data-path="📥收件箱"] {
   color: rgb(255,218,145) !important;
   border-radius: 6px;
+  box-sizing: border-box;
+  overflow: hidden;
   animation: xwc-inbox-row-pulse 1.8s ease-in-out infinite !important;
 }
 
