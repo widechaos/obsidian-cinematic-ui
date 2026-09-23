@@ -79,7 +79,8 @@ body { --cursor-color: rgba(var(--xwc-glow-rgb), .95) !important; }
   width: 100% !important;
   max-width: none !important;
   margin-inline: 0 !important;
-  border-radius: 0;
+  border-radius: 0 !important;
+  background-clip: border-box !important;
   box-sizing: border-box;
   overflow: hidden;
   animation: xwc-inbox-row-pulse 1.8s ease-in-out infinite !important;
