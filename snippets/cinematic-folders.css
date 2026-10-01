@@ -1,0 +1,19 @@
+/* Obsidian Cinematic UI — MIT; optional desktop file explorer module.
+   Six nested folder levels. No directory names, wallpaper or theme dependency. */
+.nav-files-container { --xwc-folder-height: 30px; }
+.nav-files-container .nav-folder:not(.mod-root) > .nav-folder-title {
+  position: sticky;
+  height: var(--xwc-folder-height);
+  box-sizing: border-box;
+  background: var(--background-secondary, #171c28) !important;
+  border-left: 3px solid hsl(var(--xwc-folder-hue, 210) 65% 65%);
+  border-radius: 0;
+  color: var(--text-normal);
+}
+.nav-files-container .nav-folder.mod-root > .nav-folder-children > .nav-folder > .nav-folder-title { top: calc(var(--xwc-folder-height) * 0); z-index: 21; --xwc-folder-hue: 214; }
+.nav-files-container .nav-folder.mod-root > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-title { top: calc(var(--xwc-folder-height) * 1); z-index: 22; --xwc-folder-hue: 238; }
+.nav-files-container .nav-folder.mod-root > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-title { top: calc(var(--xwc-folder-height) * 2); z-index: 23; --xwc-folder-hue: 262; }
+.nav-files-container .nav-folder.mod-root > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-title { top: calc(var(--xwc-folder-height) * 3); z-index: 24; --xwc-folder-hue: 286; }
+.nav-files-container .nav-folder.mod-root > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-title { top: calc(var(--xwc-folder-height) * 4); z-index: 25; --xwc-folder-hue: 310; }
+.nav-files-container .nav-folder.mod-root > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-children > .nav-folder > .nav-folder-title { top: calc(var(--xwc-folder-height) * 5); z-index: 26; --xwc-folder-hue: 334; }
+body.theme-light .nav-files-container .nav-folder-title { border-left-color: hsl(var(--xwc-folder-hue, 210) 65% 38%); }

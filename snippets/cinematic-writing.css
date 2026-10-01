@@ -1,0 +1,95 @@
+/* Obsidian Cinematic UI — MIT; standalone module */
+:root {
+  --xwc-glow-rgb: 168, 208, 255;
+  --xwc-image-reveal-duration: .62s;
+  --xwc-callout-breathe-duration: 2.4s;
+}
+
+/* Document reveal */
+@keyframes xwc-document-in {
+  from { opacity: 0; transform: translate3d(0, 5px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.workspace-leaf.mod-active :is(.markdown-source-view, .markdown-preview-view) {
+  animation: xwc-document-in .28s ease-out both;
+}
+
+/* Stable caret and active-line glow */
+body { --cursor-color: rgba(var(--xwc-glow-rgb), .95) !important; }
+.markdown-source-view.mod-cm6 .cm-content,
+.cm-editor .cm-content { caret-color: rgba(var(--xwc-glow-rgb), .95) !important; }
+.cm-editor.cm-focused .cm-line.cm-active {
+  background: linear-gradient(90deg, rgba(var(--xwc-glow-rgb), .14), rgba(var(--xwc-glow-rgb), .05) 42%, transparent 76%) !important;
+  box-shadow: inset 2px 0 rgba(var(--xwc-glow-rgb), .55);
+}
+
+/* Selection glow */
+:is(.markdown-rendered, .markdown-preview-view, .markdown-source-view.mod-cm6) ::selection {
+  color: var(--text-normal) !important;
+  background: rgba(var(--xwc-glow-rgb), .24) !important;
+  text-shadow: 0 0 4px rgba(var(--xwc-glow-rgb), .95), 0 0 11px rgba(var(--xwc-glow-rgb), .68), 0 0 22px rgba(var(--xwc-glow-rgb), .34);
+}
+.markdown-source-view.mod-cm6 .cm-editor .cm-selectionBackground {
+  background: rgba(var(--xwc-glow-rgb), .20) !important;
+  box-shadow: 0 0 7px 2px rgba(var(--xwc-glow-rgb), .48), inset 0 0 6px rgba(var(--xwc-glow-rgb), .22);
+  border-radius: 3px;
+}
+
+/* Link underline growth */
+:is(.markdown-rendered, .markdown-source-view.mod-cm6) a {
+  background-image: linear-gradient(90deg, rgba(var(--xwc-glow-rgb), .88), rgba(var(--xwc-glow-rgb), .30));
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  text-decoration: none;
+  transition: background-size .24s ease, text-shadow .24s ease;
+}
+:is(.markdown-rendered, .markdown-source-view.mod-cm6) a:hover {
+  background-size: 100% 1px;
+  text-shadow: 0 0 10px rgba(var(--xwc-glow-rgb), .32);
+}
+
+/* Completed task feedback */
+@keyframes xwc-task-flash {
+  0% { box-shadow: 0 0 0 0 rgba(var(--xwc-glow-rgb), .78); }
+  100% { box-shadow: 0 0 0 13px rgba(var(--xwc-glow-rgb), 0); }
+}
+.task-list-item:is(.is-checked, :has(> input[type="checkbox"]:checked)) { text-decoration: line-through !important; opacity: .68; }
+.task-list-item input[type="checkbox"]:checked { animation: xwc-task-flash .52s ease-out both !important; }
+
+/* Reading-mode code block lift */
+:is(.markdown-rendered, .markdown-preview-view) pre:not(.obsidian-embedded-code-title__code-block-title) {
+  transform: translate3d(0, 0, 0);
+  transition: transform .24s cubic-bezier(.2,.8,.25,1), box-shadow .24s ease, border-color .24s ease;
+}
+:is(.markdown-rendered, .markdown-preview-view) pre:not(.obsidian-embedded-code-title__code-block-title):hover {
+  transform: translate3d(0, -4px, 0);
+  border-color: rgba(var(--xwc-glow-rgb), .42) !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,.36), 0 0 18px rgba(var(--xwc-glow-rgb), .18);
+}
+
+/* Image reveal */
+@keyframes xwc-image-ready {
+  0% { opacity: 0; filter: blur(5px) saturate(.72); transform: translate3d(0,5px,0) scale(.992); }
+  60% { opacity: .78; }
+  100% { opacity: 1; filter: blur(0) saturate(1); transform: translate3d(0,0,0) scale(1); }
+}
+:is(.markdown-rendered, .markdown-preview-view, .markdown-source-view.mod-cm6)
+  :is(.internal-embed.image-embed img, .image-embed img, img[src]:not(.emoji):not(.cm-widgetBuffer)) {
+  animation: xwc-image-ready var(--xwc-image-reveal-duration) cubic-bezier(.2,.72,.24,1) both;
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+
+
+body.theme-light { --xwc-glow-rgb: 36, 91, 164; }
+@media (prefers-reduced-motion: reduce) {
+  .workspace-leaf.mod-active :is(.markdown-source-view, .markdown-preview-view),
+  .task-list-item input[type="checkbox"]:checked,
+  :is(.markdown-rendered, .markdown-preview-view, .markdown-source-view.mod-cm6) img {
+    animation: none !important;
+  }
+  :is(.markdown-rendered, .markdown-source-view.mod-cm6) a,
+  :is(.markdown-rendered, .markdown-preview-view) pre { transition: none !important; }
+  :is(.markdown-rendered, .markdown-preview-view) pre:hover { transform: none; }
+}

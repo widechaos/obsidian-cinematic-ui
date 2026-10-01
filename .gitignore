@@ -2,3 +2,7 @@
 *.swp
 *.tmp
 .obsidian/
+
+assets/frames/
+node_modules/
+*.zip
