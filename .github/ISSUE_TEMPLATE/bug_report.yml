@@ -1,0 +1,33 @@
+name: Bug report
+description: Report a reproducible problem with a safe example.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: "Use fictional examples. Do not attach credentials, private content or real recordings. Security reports belong in SECURITY.md."
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include the behavior you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Give the smallest example that reproduces the problem.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Version and environment
+      description: Relevant commit/version, operating system, browser or runtime.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Safe screenshots or logs
+      description: Remove personal text, absolute local paths, tokens and account details.

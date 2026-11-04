@@ -1,12 +1,14 @@
 # Obsidian Cinematic UI
 
-**Small details. Better focus.** Independent CSS modules for glass Callouts, writing feedback, and a file tree that keeps your place.
+Optional Obsidian CSS snippets for callouts, writing feedback and a sticky file tree.
 
 给 Obsidian 加一点有用的视觉反馈：语义玻璃提示框、写作微动效和彩色粘性目录。按需安装，随时关闭。
 
 ![Three-module CSS preview with fictional content](assets/overview.png)
 
 *Rendered CSS preview using fictional, Obsidian-shaped HTML. This is not an Obsidian app screenshot. / 上图为虚构内容的 CSS 渲染预览，并非 Obsidian 应用截图。*
+
+[Download the CSS](https://github.com/widechaos/obsidian-cinematic-ui/releases/latest) · [中文安装说明](docs/安装与定制.md) · [Report a problem](https://github.com/widechaos/obsidian-cinematic-ui/issues/new/choose)
 
 ## Pick your modules
 
@@ -52,3 +54,7 @@ An optional [folder demo guide](examples/folders.md) shows a fictional test tree
 ## License
 
 MIT © 2026 widechaos. Existing themes, wallpaper, and fonts remain their respective authors' work.
+
+## Community
+
+[Contributing](CONTRIBUTING.md) · [Security reports](SECURITY.md) · [Community guidelines](CODE_OF_CONDUCT.md) · [Third-party notes](THIRD_PARTY.md)

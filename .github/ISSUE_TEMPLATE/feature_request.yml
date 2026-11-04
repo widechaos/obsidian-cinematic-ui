@@ -1,0 +1,16 @@
+name: Feature request
+description: Describe a task the project does not yet support.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: task
+    attributes:
+      label: What are you trying to do?
+      description: Describe the task and the current difficulty.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested approach
+      description: Include alternatives or your current workaround if useful.
